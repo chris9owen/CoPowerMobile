@@ -1,3 +1,4 @@
 rootProject.name='CoPower'
 include ':app'
 include ':SharedCode'
+enableFeaturePreview("GRADLE_METADATA")

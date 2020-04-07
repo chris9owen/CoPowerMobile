@@ -15,6 +15,11 @@ import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*
 
+import io.ktor.client.*
+import io.ktor.client.engine.android.*
+import io.ktor.client.features.json.*
+import io.ktor.client.request.*
+import kotlinx.coroutines.*
 /**
  * An activity representing a list of Pings. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -52,7 +57,9 @@ class ItemListActivity : AppCompatActivity() {
         }
 
         setupRecyclerView(item_list)
-        findViewById<TextView>(R.id.main_text).text = createApplicationScreenMessage()
+        val client = HttpClient(Android)
+        val firstBytes = client.get<ByteArray>("https://127.0.0.1:8080/a")
+        //findViewById<TextView>(R.id.main_text).text = createApplicationScreenMessage()
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
